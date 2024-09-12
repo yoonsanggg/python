@@ -4,12 +4,19 @@ class 차():
         self.whell = whell
         self.price = price
         
-class 자전차(차):
+class 자동차(차):
     def __init__(self,whell,price) :
         super().__init__(whell,price)
+    def info(self):
+        print(self.whell)
+        print(self.price)
 
-bicy = 자전차(2,100)
-print(bicy.price)
+
+
+car = 자동차(4,1000)
+car.info()
+
+
 
 
 
