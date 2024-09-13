@@ -41,23 +41,33 @@ class MyClass:
         # MyClass()를  생성하면 클래스 안의 값 무한증식 가능
         # 인스턴스 변수는 생성자를 통해 초기화됨 
         # MyClass(여기서 초기화) , 혹은 직접 접근해서 바꿔주던가
-print(MyClass.static_method())
-print("="*90)
+    # 객체를 출력할 때 실행되는
+    # return 해줘야 되겠죠?
+    def __str__(self) -> str:
+        return'MyClass'
+
+    # 디버깅 용도로 사용되며 객체가 어떻게 생성되었는지를 반환
+    # !r - 문자열형태로 만들어줌 (감싸준다고 생각하면 됨)
+    def __repr__(self) -> str:
+        return f'MyClass({self.instance_var!r})'
+
+
+
+print(f"MyClass.static_method(): {MyClass.static_method()}")
 myClass = MyClass('2교육장')
 myClass1 = MyClass('1교육장')
-print(myClass1.name)
-print(myClass.name)
+print(f"var : {myClass.var}")
+print(f"var : {myClass.var}")
+
+print("="*90)
+print(f"myClass.__repr__(): {myClass.__repr__()}")
+print("="*90)
+
 print(f"instance_var: {myClass.instance_var}")
 
-myClass.instance_var = '값 변경'
-print(f"instance_var: {'걍마클',myClass.instance_var}")
-print(f"instance_var: {'마클1',myClass1.instance_var}")
-myClass1.instance_var = '나인원'
-print(f"instance_var: {'마클1',myClass1.instance_var}")
 # 인스턴스 변수 - 각각 인스턴스마다
 # 클래스 변수 - 인스턴스가 공유하는 변수 (같은 값 유지)
-print(f"var: {myClass.var}")
-print(f"var: {myClass1.var}")
+
 # class
 myClass.set_class_var("합치냐?")
 print(f"var: {myClass.var}")
@@ -67,26 +77,6 @@ print(f"var: {myClass1.var}")
 
 # 이렇게 한게 인스턴스 변수를 생성
 myClass.var = "0가냐?"
-print(f"var: {myClass.var}")
-print(f"var: {myClass1.var}")
-myClass1.var = "1간다?"
-print(f"var: {myClass.var}")
-print(f"var: {myClass1.var}")
 
-myClass.set_class_var("합치냐?")
-print(f"var: {myClass.var}")
-print(f"var: {myClass1.var}")
 
 # 서로의 값을 공유하지 않음 - 인스턴스 변수
-
-
-class myClass:
-    def __init__(self):
-        self.instance ="갈게"
-    @classmethod
-    def set_class_var(cls,value):
-        cls.var = value
-hi = myClass()
-print(hi.instance)
-hi.instance="진짜 갈게"
-print(hi.instance)
